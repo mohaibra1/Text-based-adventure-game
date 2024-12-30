@@ -1,0 +1,8 @@
+type: framework
+content:
+  - What's on the menu
+  - Start a new game
+  - Gameplay time
+  - Save the game
+  - Load the game
+current_task: 0

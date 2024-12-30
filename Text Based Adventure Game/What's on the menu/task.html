@@ -1,0 +1,37 @@
+<div class="step-text">
+<p></p><h5 id="description">Description</h5><p>In this stage, you need to put up the main menu for the game.</p><p>Think about the video games you like. They may be different, but they have one thing in common — the main menu. It may contain the game title and some options like "start a new game" or "load game". And of course, it should have the option to exit the game. </p><h5 id="objectives">Objectives</h5><p>In this stage, your program should:</p><ol><li><p>Show a welcome message with the game title. The message should include the phrase <code class="java">Welcome to</code> followed by the title. To make it stand out as a title, you need to surround it with three asterisks (<code class="java">***</code>) on each end.</p></li><li><p>Show different options to start a new game or load a saved one. You may use options shown in the Examples below or use your own, but make sure to include its number and appropriate substring (<code class="java">Start a new game</code> and <code class="java">Load your progress</code> respectively).</p></li><li><p>Take the user input. If it is incorrect, show a message and wait for the correct one. (<code class="java">Unknown input! Please enter a valid one.</code>)</p></li><li><p>Print temporary placeholder messages like in the example, when a player starts a new game (<code class="java">Starting a new game</code>) or loads an existing one (<code class="java">No saved data found</code>).</p></li><li><p>Implement the exit feature for your game. Print a goodbye message. (<code class="java">Goodbye</code>)</p></li></ol><p></p><div class="alert alert-primary"><p>Your program should be able to process inputs of different letter cases.</p></div><p></p><h5 id="examples">Examples</h5><p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p><p><strong>Example 1: </strong><em>Input "1".</em></p><pre><code class="language-no-highlight">***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; 1
+Starting a new game...
+</code></pre><p><strong>Example 2: </strong><em>Input "start'". Your program must be able to process letters of different cases.</em></p><pre><code class="language-no-highlight">***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; StaRt
+Starting a new game...</code></pre><p><strong>Example 3: </strong><em>Input "2".</em></p><pre><code class="language-no-highlight">***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; 2
+No save data found!</code></pre><p><strong>Example 4:</strong> <em>Unknown input.</em></p><pre><code class="language-no-highlight">***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; 5
+Unknown input! Please enter a valid one.
+&gt; smile
+Unknown input! Please enter a valid one.
+&gt;</code></pre><p><strong>Example 5: </strong><em>Exit the program.</em></p><pre><code class="language-no-highlight">***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; 3
+Goodbye!</code></pre>
+</div>

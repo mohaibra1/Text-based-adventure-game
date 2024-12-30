@@ -1,0 +1,21 @@
+type: edu
+custom_name: What's on the menu?
+files:
+  - name: test/__init__.py
+    visible: false
+    learner_created: false
+  - name: test/tests.py
+    visible: false
+    learner_created: false
+  - name: game.py
+    visible: true
+    learner_created: false
+  - name: tests.py
+    visible: false
+    learner_created: false
+feedback_link: https://hyperskill.org/projects/161/stages/834/implement#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Mon, 30 Dec 2024 12:42:20 UTC"
+record: -1

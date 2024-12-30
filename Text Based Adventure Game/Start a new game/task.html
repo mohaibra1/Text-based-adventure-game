@@ -1,0 +1,86 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>In this stage, you will implement the new game function and the game stats.</p>
+<p>You need to store important variables when creating a new game such as:</p>
+<ul>
+<li>The username. You will need it in a later stage for the save file path.</li>
+<li>The character attributes: <code class="java">Name</code>, <code class="java">Species</code>, and the <code class="java">Gender</code>.</li>
+<li>The inventory: <code class="java">Snack</code>, <code class="java">Weapon</code>, and <code class="java">Tool</code>.</li>
+<li>The difficulty level: <code class="java">1. Easy</code>, <code class="java">2. Medium</code> and <code class="java">3. Hard</code>. The user should be able to select the difficulty level either by the word or the index. Difficulty selection should be case-insensitive.</li>
+<li>The remaining lives: <strong>5</strong> for an easy difficulty level, <strong>3</strong> for a medium one, and <strong>1</strong> for a hard one. You don't need to take the number of lives as input, it should be calculated on the basis of the level that the user chooses.</li>
+</ul>
+<p>You might want to divide variables into sections to make the output more pleasing to the player, that won't be tested.</p>
+<p>Output <code class="java">highlighted</code> substrings from a list before corresponding input, so that player can determine what data he/she is entering. You should get the game variables in the same order as in the Examples section.</p>
+<p>When all the variables have been entered your program should output the game stats. You can use the following formatting:</p>
+<pre><code class="language-no-highlight">Good luck on your journey, {username}!
+Your character: {name}, {species}, {gender}
+Your inventory: {snack}, {weapon}, {tool}
+Difficulty: {difficulty}
+Number of lives: {lives}</code></pre>
+<p><strong>Note, that difficulty level should be printed as a word (Easy, Medium or Hard)</strong></p>
+<p>Also, a player can make a mistake by choosing to create a new game, so give them an option to go back to the main menu: <code class="java">Enter a username ('/b' to go back):</code>.</p>
+<p>Don't forget to handle incorrect input of difficulty the same way as before with option selection!</p>
+<h5 id="objectives">Objectives</h5>
+<p>In this stage, your program should:</p>
+<ol>
+<li>Create and store the game state with variables such as the inventory, character attributes, difficulty, remaining lives, and the username.</li>
+<li>Have the option to go back to the menu with <code class="java">/b</code> command before creating a new game.</li>
+<li>Before the new game starts, output the message <code class="java">Good luck on your journey, {username}!</code> with the game stats below such as the character traits, inventory, difficulty, and the number of lives.</li>
+<li>Handle incorrect input of difficulty.</li>
+</ol>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1: </strong><em>creating a new game.</em></p>
+<pre><code class="language-no-highlight">***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; 1
+Starting a new game...
+Enter a username ('/b' to go back): &gt; new_user
+Create your character:
+	Name: &gt; john
+	Species: &gt; human
+	Gender: &gt; male
+Pack your bag for the journey:
+	Snack: &gt; apple
+	Weapon: &gt; sword
+	Tool: &gt; rope
+Choose your difficulty:
+	1. Easy
+	2. Medium
+	3. Hard
+&gt; 1
+Good luck on your journey, new_user!
+Your character: john, human, male
+Your inventory: apple, sword, rope
+Difficulty: easy
+Number of lives: 5
+</code></pre>
+<p> <strong>Example 2: </strong><em>unknown input.</em></p>
+<pre><code class="language-no-highlight">...
+Choose your difficulty:
+	1. Easy
+	2. Medium
+	3. Hard
+&gt; insane
+Unknown input! Please enter a valid one.
+&gt; easy
+...</code></pre>
+<p><strong>Example 3: </strong><em>going back to the menu.</em></p>
+<pre><code class="language-no-highlight">***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; 1
+Starting a new game...
+Enter a username ('/b' to go back): &gt; /b
+***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+...</code></pre>
+</div>

@@ -1,0 +1,90 @@
+<div class="step-text">
+<p></p><h5 id="description">Description</h5><p>The next thing we are going to implement is the saving feature.</p><p>First, let's add a new command. In addition to <code class="language-json">/h</code>, <code class="language-json">/c</code>, <code class="language-json">/i</code> and <code class="language-json">/q</code> commands, the player should now have an option to save the game progress via <code class="language-json">/s</code> command. By saying "the game progress", we mean the game stats player reached. Update the output of /h by adding a new command to a list: <code class="language-json">/s =&gt; Save the game</code>.</p><p>In your project directory, make a folder called <code class="language-json">data</code> with a subfolder named <code class="language-json">saves</code>. For now, it is empty, but to implement your save functionality, your program should create new JSON files and write the items from the game stats. Each JSON save file will be named with the player's username, such that its filepath looks like: <code class="language-json">data/saves/{username}.json</code>. This way, each user will have their own save file. If the player saves the game and the save-file is already present - it is necessary to update it according to the current game situation.</p><p>Write the following game stats to your save file: the character traits; in-game inventory; namings for {snack}, {weapon} and {tool}; difficulty; remaining lives and the progress player reached (current level and scene). To understand how to write the stats to file you can check this example save JSON file for the user called 'new_user':  <a href="https://cogniterra.org/media/attachments/lesson/25372/new_user.json" rel="noopener noreferrer nofollow" target="_blank">data/saves/new_user.json</a>. Follow the same structure exactly as you see in this example text file, with the necessary keys and values in the JSON.</p><p>In order for the player to realize that saving was successful, it is necessary to display the corresponding message <code class="language-json">Game saved!</code> after calling <code class="language-json">/s</code> command.</p><p>You can add some color to your text if you want to make it more fun. The <a href="https://pypi.org/project/termcolor/" rel="noopener noreferrer nofollow" target="_blank">Termcolor</a> library can help you with that. Our tests do not check the color of your text.</p><h5 id="objectives">Objectives</h5><p>In this stage, your program should be able to:</p><ol><li><p>Create save files for each user on <code class="language-json">/s</code> command call with corresponding save-message.</p></li><li><p>Update the save-file if it is already present in saves folder.</p></li></ol><h5 id="example">Example</h5><p>The greater-than symbol followed by a space (<code class="language-json">&gt; </code>) represents the user input. Note that it's not part of the input.</p><p><strong>Example 1: </strong><em>saving the game after character creation</em></p><p> </p><pre><code class="language-no-highlight">***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; 1
+Starting a new game...
+Enter a username ('/b' to go back): &gt; hyperskill
+Create your character:
+	Name: &gt; John
+	Species: &gt; Human
+	Gender: &gt; male
+Pack your bag for the journey:
+	Snack: &gt; apple
+	Weapon: &gt; sword
+	Tool: &gt; pickaxe
+Choose your difficulty:
+	1. Easy
+	2. Medium
+	3. Hard
+&gt; easy
+Good luck on your journey, hyperskill!
+Your character: John, Human, male
+Your inventory: apple, sword, pickaxe
+Difficulty: easy
+Number of lives: 5
+---------------------------
+Once you reach the beginning of the Mount Qaf, you feel amazed by the majestic
+mountain that you will conquer, at the end of this climb. You look at the snowy peaks while
+thinking of how to start the journey. There is a hill before you.
+1. Walk around a bit, maybe you'll find something interesting.
+2. Walk up the hill and begin climbing.
+3. Enjoy the scenery.
+
+&gt; /s
+Game saved!
+...</code></pre><p><em>Save-file:</em></p><pre><code class="language-json">{
+  "character": {
+    "name": "John",
+    "species": "Human",
+    "gender": "male"
+  },
+  "inventory": {
+    "snack_name": "apple",
+    "weapon_name": "sword",
+    "tool_name": "pickaxe",
+    "content": [
+      "apple",
+      "sword",
+      "pickaxe"
+    ]
+  },
+  "progress": {
+    "level": "level1",
+    "scene": "scene1"
+  },
+  "lives": 5,
+  "difficulty": "easy"
+}</code></pre><p><strong>Example 2: </strong><em>updating the save-file after some actions performed</em></p><pre><code class="language-no-highlight">...
+The voice says 'Too bad, I thought you were clever! Should I give you another chance?' as it gets closer to you.
+------ Lives remaining: 3 ------
+"Of course it was the wrong answer, how could I be so wrong?" you thought.
+1. A mosquito.
+2. A bumblebee.
+
+&gt; /s
+Game saved!
+...</code></pre><p><em>Save-file:</em></p><pre><code class="language-json">{
+  "character": {
+    "name": "John",
+    "species": "Human",
+    "gender": "male"
+  },
+  "inventory": {
+    "snack_name": "apple",
+    "weapon_name": "sword",
+    "tool_name": "pickaxe",
+    "content": [
+      "apple"
+    ]
+  },
+  "progress": {
+    "level": "level1",
+    "scene": "scene9"
+  },
+  "lives": 3,
+  "difficulty": "easy"
+}</code></pre>
+</div>

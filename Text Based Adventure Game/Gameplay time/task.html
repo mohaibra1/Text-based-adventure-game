@@ -1,0 +1,196 @@
+<div class="step-text">
+<p></p><h5 id="description">Description</h5><p>In this stage, you are going to add some new commands to a game, implement the core game features and the first level of the game.</p><p>Let's start with adding new commands to a game, as this part is much simpler. When the player just reached the game loop after initializing character he should be able to call four possible commands: <code class="java">/h</code> (show the help page with commands available to the player), <code class="java">/q</code> (quit the game), and <code class="java">/i</code>, <code class="java">/c</code> (view inventory contents and information about character respectively). Make sure, that output on each command is formatted like in the examples.</p><p></p><div class="alert alert-primary"><p>Weapon, tool and snack, that player entered before should be added to inventory before the game loop. Also, there is no need to output anything on <code class="java">/q</code> command.</p></div><p></p><p>The second part of this stage is gameplay creation. First, you need to read the contents of the <code class="java">story.json</code> file. Download the file from the link and place it in a new subfolder <code class="java">data</code> in your project directory. In this JSON file, you can see everything related to the story.</p><p>Usually games of this genre are divided into several levels, which in turn are divided into multiple scenes. In each scene, the player sees the situation in which he/she finds himself/herself right now and several options that can be performed in order to influence the further continuation of the story. Each chosen option is followed by the result text of that option, the effect on the character and the scene.</p><p>The structure of the json file, contains all the elements above as follows (for now second level is an empty object):</p><ol><li><p>First <code class="java">level{N}</code> has a <code class="java">next</code> key that contains a string with a next level key, and a <code class="java">scenes</code> key with all the scenes used in level.</p></li><li><p>Each <code class="java">scene{N}</code> has a <code class="java">text</code> key that contains a string with a text, that describes the situation, and an <code class="java">options</code> key with a list of  possible options, that can be performed in this scene.</p></li><li><p>Each option has 4 keys:</p><ul><li><p><code class="java">option_text</code> - A string that is displayed to the player as an action option</p></li><li><p><code class="java">result_text</code> - A string that is displayed to the player if he selects this option</p></li><li><p><code class="java">actions</code> - A list of outcome effects that are applied to the character on this option. Possible effects: <code class="java">+{item}</code>, <code class="java">-{item}</code> - item is added to or removed from the inventory; <code class="java">hit</code> - character loses one health; <code class="java">heal</code> - character restores one health</p></li><li><p><code class="java">next</code> - A string with a key for next scene. Can take the value <strong>'end'</strong>, which will mean the end of the level.</p></li></ul></li></ol><p>Some strings in file may contain <strong>'{tool}'</strong>, <strong>'{weapon}'</strong> or <strong>'{snack}</strong>' substrings. As you may have already guessed, instead of them, you should print/use the values entered earlier accordingly.</p><p>Let's move on to the core game loop. When player enters any scene print it's <code class="java">text</code> value and options in such format: <code class="java">{n}. {option_text}</code>, where <strong>n</strong> is a number of option, starting from 1. Also, you need to satisfy the following requirements:</p><ul><li><p>The game loop should check for the number of lives and if there are no lives remaining, the game should restart from the current level with a <code class="java">You died!</code> message.</p></li><li><p>For now if the player reached the <strong>'end'</strong> as the next scene output the <code class="java">Level 2</code> message and end the program.</p></li></ul><p>Feedbacks on each possible outcome effects:</p><table border="1"><tbody><tr><td><p><code class="java">+{item}</code></p></td><td><p><code class="java">Item added: {item}</code></p></td></tr><tr><td><p><code class="java">-{item}</code></p></td><td><p><code class="java">Item removed: {item}</code></p></td></tr><tr><td><p><code class="java">hit/heal</code></p></td><td><p><code class="java">Lives remaining: {number_of_lives}</code></p></td></tr></tbody></table><p></p><div class="alert alert-warning"><p>Don't forget that the program must be case-insensitive, and incorrect input must be followed by a <code class="java">Unknown input! Please enter a valid one.</code> message</p></div><p></p><details><summary><strong>(Optional) Additional requirements in case you want to write your own story.</strong></summary><div><ul><li><p><code class="java">story.json</code> file should be a valid json-file</p></li><li><p>There should be <code class="java">level1</code> object property in json-file</p></li><li><p>There should be <code class="java">next</code> string property in first level, equal to <strong>'level2'</strong></p></li><li><p>There should be <code class="java">scenes</code> object property in first level</p></li><li><p>First scene (if there are some) in each level should be named as <code class="java">scene1</code></p></li><li><p>Each scene should have a <code class="java">next</code> string property and <code class="java">options</code> list property</p></li><li><p>Each <code class="java">options</code> list should have at least 2 elements</p></li><li><p>Each element in <code class="java">options</code> list should be an object with <code class="java">option_text</code>, <code class="java">result_text</code>, <code class="java">next</code> string properties and <code class="java">actions</code> list property</p></li><li><p>If there are elements in <code class="java">actions</code> list they should be of string type and look like any of possible outcomes</p></li><li><p><code class="java">next</code> property in each option should be a name of existing scene or <strong>'end'</strong>. Each scene should be named as <code class="java">scene{n}</code> </p></li><li><p><strong>'{tool}'</strong>, <strong>'{weapon}'</strong> or <strong>'{snack}</strong>' substrings should appear at least once in your story</p></li><li><p>Story tree should be unidirectional, so it should not be possible to enter previous scenes</p></li><li><p>There should be at least 6 scenes (that can be reached) in first level for this stage</p></li><li><p>There should be at least 10 different scenarios of first level in your story</p></li><li><p>Each "path" in your story should end with <strong>'end'</strong> scene</p></li><li><p>Story tree should not have such scenarios, where an item that is not in inventory should be removed via <code class="java">-{item}</code> action</p></li><li><p>Story tree should not have such scenarios, where an item that is already in inventory should be added via <code class="java">+{item}</code> action</p></li><li><p>Story tree should have at least one scenario, where a player can reach the end of first level without taking any damage</p></li></ul></div></details><h5 id="objectives">Objectives</h5><ol><li><p>(Optional) Write your own story, following the requirements mentioned earlier;</p></li><li><p>Add to the program the ability to correctly process commands <code class="java">/h</code>, <code class="java">/q</code>, <code class="java">/i</code> and <code class="java">/c</code>;</p></li><li><p>Read the story content, replacing <strong>'{tool}'</strong>, <strong>'{weapon}'</strong> or <strong>'{snack}</strong>' substrings with appropriate ones;</p></li><li><p>Implement a game loop that correctly tells a story based on the file;</p></li><li><p>Correctly process user input in a game loop and give an appropriate feedback.</p></li></ol><h5 id="examples">Examples</h5><p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p><p><strong>Example 1: </strong><em>the player finishes it's character creation and enters the game loop.</em></p><pre><code class="language-no-highlight">***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; 1
+Starting a new game...
+Enter a username ('/b' to go back): &gt; Hyperskill
+Create your character:
+	Name: &gt; John
+	Species: &gt; Human
+	Gender: &gt; male
+Pack your bag for the journey:
+	Snack: &gt; apple
+	Weapon: &gt; sword
+	Tool: &gt; pickaxe
+Choose your difficulty:
+	1. Easy
+	2. Medium
+	3. Hard
+&gt; hard
+Good luck on your journey, Hyperskill!
+Your character: John, Human, male
+Your inventory: apple, sword, pickaxe
+Difficulty: hard
+Number of lives: 1
+---------------------------
+Once you reach the beginning of the Mount Qaf, you feel amazed by the majestic
+mountain that you will conquer, at the end of this climb. You look at the snowy peaks while
+thinking of how to start the journey. There is a hill before you.
+1. Walk around a bit, maybe you'll find something interesting.
+2. Walk up the hill and begin climbing.
+3. Enjoy the scenery.
+...</code></pre><p><strong>Example 2: </strong><em>scene switching.</em></p><pre><code class="language-no-highlight">...
+Once you reach the beginning of the Mount Qaf, you feel amazed by the majestic
+mountain that you will conquer, at the end of this climb. You look at the snowy peaks while
+thinking of how to start the journey. There is a hill before you.
+1. Walk around a bit, maybe you'll find something interesting.
+2. Walk up the hill and begin climbing.
+3. Enjoy the scenery.
+
+&gt; 3
+
+You admired the majestic view of the mountain!
+That view was really astounding! But we can't stand here forever, mesmerized by it
+1. Walk around a bit, maybe you'll find something interesting.
+2. Walk up the hill and begin climbing.
+...</code></pre><p><strong>Example 3: </strong><em>scene switching with </em><code class="java">+{item}</code> action.</p><pre><code class="language-no-highlight">...
+&gt; 1
+
+In a small cave nearby you found a key.
+------ Item added: key ------
+...</code></pre><p><strong>Example 4: </strong><em>scene switching with </em><code class="java">-{item}</code> action.</p><pre><code class="language-no-highlight">...
+&gt; 2
+
+You go up the mountain, using the pickaxe
+------ Item removed: pickaxe ------
+...</code></pre><p><strong>Example 5: </strong><em>scene switching with </em><code class="java">hit</code> action.</p><pre><code class="language-no-highlight">...
+&gt; 1
+
+Unfortunately, the source of the sound was a large rat that took advantage of your carelessness
+and bit your leg.
+You've tried to run further up the staircase.
+------ Lives remaining: 4 ------
+...</code></pre><p><strong>Example 6: </strong><em>scene switching with </em><code class="java">heal</code> and <code class="java">-{item}</code> actions.</p><pre><code class="language-no-highlight">...
+&gt; 3
+
+When the sword hit the source of the sound, it went silent.
+That gave you confidence and you've calmly continued your way up.
+------ Item removed: sword ------
+------ Lives remaining: 6 ------
+...</code></pre><p><strong>Example 7: </strong><em>proceeding to the next level.</em></p><pre><code class="language-no-highlight">...
+&gt; 3
+
+The darkness says 'Correct! You may pass traveller.'
+You saw a light coming from the inner cave and you follow it.
+------ Level 2 ------</code></pre><p><strong>Example 8: </strong><em>character dies.</em></p><pre><code class="language-no-highlight">...
+&gt; 1
+
+Unfortunately, the source of the sound was a large rat that took advantage of your carelessness
+and bit your leg.
+You've tried to run further up the staircase.
+------ You died ------
+Once you reach the beginning of the Mount Qaf, you feel amazed by the majestic
+mountain that you will conquer, at the end of this climb. You look at the snowy peaks while
+thinking of how to start the journey. There is a hill before you.
+1. Walk around a bit, maybe you'll find something interesting.
+2. Walk up the hill and begin climbing.
+3. Enjoy the scenery.
+...</code></pre><p><strong>Example 9: </strong><em>calling commands.</em></p><pre><code class="language-no-highlight">...
+&gt; /h
+Type the number of the option you want to choose.
+Commands you can use:
+/i =&gt; Shows inventory.
+/q =&gt; Exits the game.
+/c =&gt; Shows the character traits.
+/h =&gt; Shows help.
+
+&gt; /c
+Your character: John, Human, male.
+Lives remaining: 1
+
+&gt; /i
+Inventory: apple, sword, key
+
+&gt; /q
+Thanks for playing!</code></pre><details><summary><strong>Example 10: </strong><em>one of scenarios from start to the end</em></summary><div><pre><code class="language-no-highlight">***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; 1
+Starting a new game...
+Enter a username ('/b' to go back): &gt; Hyperskill
+Create your character:
+	Name: &gt; John
+	Species: &gt; Human
+	Gender: &gt; male
+Pack your bag for the journey:
+	Snack: &gt; apple
+	Weapon: &gt; sword
+	Tool: &gt; pickaxe
+Choose your difficulty:
+	1. Easy
+	2. Medium
+	3. Hard
+&gt; hard
+Good luck on your journey, Hyperskill!
+Your character: John, Human, male
+Your inventory: apple, sword, pickaxe
+Difficulty: hard
+Number of lives: 1
+---------------------------
+Once you reach the beginning of the Mount Qaf, you feel amazed by the majestic
+mountain that you will conquer, at the end of this climb. You look at the snowy peaks while
+thinking of how to start the journey. There is a hill before you.
+1. Walk around a bit, maybe you'll find something interesting.
+2. Walk up the hill and begin climbing.
+3. Enjoy the scenery.
+
+&gt; 1
+
+In a small cave nearby you found a key.
+------ Item added: key ------
+Suddenly, a large boulder fell behind you and covered the entrance to the cave.
+You see a closed door with a message in front of you.
+It says: "I only open myself to the generous ones!"
+1. Give away the pickaxe
+2. Give away the apple
+
+&gt; 2
+
+You gave away the apple and the door swung open
+------ Item removed: apple ------
+Behind the door there is a long, lighted by lit torches, staircase leading somewhere upward.
+As you made your way up it, you heard a low, creaking noise behind you.
+1. Turn around to whisper.
+2. Run further up the staircase.
+3. Throw a sword behind yourself
+
+&gt; 3
+
+When the sword hit the source of the sound, it went silent.
+That gave you confidence and you've calmly continued your way up.
+------ Item removed: sword ------
+------ Lives remaining: 2 ------
+You faced an ordinary door (what a surprise...), a little rotten on all sides.
+There is a huge barn lock on it.
+You have absolutely decided that it is not worth going back to that scary sound so you have to get behind it somehow.
+1. Open the door with the key you found earlier.
+2. Come on, it's rotten - hit it a couple of times and it'll open for sure.
+
+&gt; 2
+
+Well, the door still had to be opened with the key, albeit with little damage... for you. Was it worth it?
+------ Item removed: key ------
+------ Lives remaining: 1 ------
+This door was the entrance to a cave. The inside was vast, filled with icicles on the ceiling.
+You sat down on a rock trying to get warm and all of a sudden you felt as if you weren't alone.
+You stand still to listen to hear its breathing. Then you hear a big laugh echoing on the surface of the cave.
+Darkness says "There come many travellers here to conquer this mountain, however very few can pass this point".
+You were too scared to answer. The voice continued "Answer my riddle correctly and I'll let you pass, it's that simple!
+As small as your thumb, I am light in the air,
+you may hear me before you see me, but trust that I'm there.
+What am I?"
+1. A hummingbird.
+2. A mosquito.
+3. A bumblebee.
+
+&gt; 3
+
+The darkness says 'Correct! You may pass traveller.'
+You saw a light coming from the inner cave and you follow it.
+------ Level 2 ------</code></pre></div></details>
+</div>

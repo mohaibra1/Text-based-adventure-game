@@ -1,0 +1,73 @@
+<div class="step-text">
+<p></p><h5 id="description">Description</h5><p>In this stage, you are going to implement the loading feature in your game. Don't forget to add Level 2! If you wish, you can write the next level by yourself following the requirements from the third stage or by analogy with the first level. Otherwise, replace the previously used story-file with a new one <a href="https://cogniterra.org/media/attachments/lesson/25372/story2.json" rel="noopener noreferrer nofollow" target="_blank">story.json</a>, already formed in advance.</p><p>We already included the loading option in our menu. Now it's time to polish it.</p><p>First, you need to check how many users are stored in the save folder. Output <code class="language-json">Choose username (/b - back):</code> message, show the list of the usernames without the <em>%.json%</em> extension and take the user input. If the user input is the <code class="language-json">/b</code> command, return the player to the main menu in the same way as for the game start option. Otherwise, read the save file, belonging to this username.</p><p>Once you loaded the save, you need to bring the game stats back into the game. Print <code class="language-json">Loading your progress...</code> and <code class="language-json">Level {n} </code> messages. Show last scene's text with options, so that after loading, the game will resume from where the player left off the last time.</p><p>The tests do not check if your program has finished at the end of both levels, so that you can modify the game as you want and add more and more interesting levels.</p><p></p><div class="alert alert-warning"><p>And again, don't forget that the program must be case-insensitive, and incorrect input must be followed by a <code class="language-json">Unknown input! Please enter a valid one.</code> message</p></div><p></p><p>Good luck on your future journeys, travelers!</p><h5 id="objectives">Objectives</h5><ol><li><p>(Optional) Write your own second level, following the requirements mentioned in third stage;</p></li><li><p>Show the list of usernames with saves if user chooses load option;</p></li><li><p>Take the user input to load the game (or <code class="language-json">/b</code> command to return back to main menu). Use the prompt mentioned earlier to signal the user to start typing;</p></li><li><p>Load the player state from save-file, so that user can resume from where he left off last time. Don't forget to output level and last scene's text with options.</p></li></ol><h5 id="examples">Examples</h5><p>The greater-than symbol followed by a space (<code class="language-json">&gt; </code>) represents the user input. Note that it's not part of the input.</p><p><strong>Example 1: </strong><em>moving to the second level.</em></p><pre><code class="language-no-highlight">...
+&gt; 3
+
+The darkness says 'Correct! You may pass traveller.'
+You saw a light coming from the inner cave and you follow it.
+
+------ Level 2 ------
+You stand before a narrow, treacherous path that winds along the mountain's edge.
+The wind howls, and the path looks perilous. What will you do?
+1. Bravely attempt the treacherous path.
+2. Search for an alternate route.
+...</code></pre><p><strong>Example 2: </strong><em>loading the game from save-file.</em></p><p><em>hyperskill.json:</em></p><pre><code class="language-json">{
+  "character": {
+    "name": "John",
+    "species": "Human",
+    "gender": "male"
+  },
+  "inventory": {
+    "snack_name": "apple",
+    "weapon_name": "sword",
+    "tool_name": "pickaxe",
+    "content": [
+      "apple",
+      "sword"
+    ]
+  },
+  "progress": {
+    "level": "level2",
+    "scene": "scene4"
+  },
+  "lives": 5,
+  "difficulty": "easy"
+}</code></pre><pre><code class="language-no-highlight">***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; 2
+Choose username (/b - back):
+
+another_user
+hyperskill
+
+&gt; hyperskill
+Loading your progress...
+
+------ Level 2 ------
+You ascend higher, the air getting thinner as you approach the summit.
+The landscape becomes more rugged and desolate.
+Suddenly, you stumble upon an injured traveler lying on the ground.
+1. Offer your assistance and heal the traveler's wounds.
+2. Keep your guard up and cautiously approach the traveler.</code></pre><p><strong>Example 3: </strong><em>incorrect input and back command.</em></p><pre><code class="language-no-highlight">Thanks for playing!
+***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)
+&gt; 2
+Choose username (/b - back):
+
+another_user
+hyperskill
+
+&gt; not_existing_username
+Unknown input! Please enter a valid one.
+&gt; /b
+***Welcome to the Journey to Mount Qaf***
+
+1. Start a new game (START)
+2. Load your progress (LOAD)
+3. Quit the game (QUIT)</code></pre>
+</div>
