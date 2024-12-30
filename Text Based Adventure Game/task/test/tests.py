@@ -25,7 +25,7 @@ def run_for_stages(*stage_numbers: int):
 class SharedTest(StageTest):
     def __init__(self, stage: int):
         super().__init__("game.game")
-        self.stage = 1
+        self.stage = stage
 
 
 def check_tokens(output, tokens: List):
@@ -1031,4 +1031,4 @@ class TextBasedAdventureGameTest(SharedTest):
 
 
 if __name__ == '__main__':
-    TextBasedAdventureGameTest(1).run_tests()
+    TextBasedAdventureGameTest(2).run_tests()
